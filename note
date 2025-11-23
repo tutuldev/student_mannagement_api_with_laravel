@@ -1,0 +1,27 @@
+1. প্রথমে এটা ইনস্টল করতে হবে composer require laravel/passport
+error ashle
+PHP → php.ini
+;extension=sodium
+extension=sodium
+ করে দিলে কাজ করবে
+
+2. database migrate করতে হবে
+php artisan migrate
+
+3.
+ 'guards' => [
+        'web' => [
+            'driver' => 'session',
+            'provider' => 'users',
+        ],
+
+        'api' => [
+
+            'driver' => 'passport',
+
+            'provider' => 'users',
+
+        ],
+
+php artisan make:controller Api/Auth/AuthController
+php artisan make:controller Api/Auth/ForgotPasswordController
