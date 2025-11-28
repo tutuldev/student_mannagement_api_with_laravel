@@ -21,7 +21,7 @@ class AuthController extends Controller
         ]);
         if($validate->fails()){
             return response()->json([
-              'error' => $validate->errors(),
+              'errors' => $validate->errors(),
             ], 422);
         }
         $reqData = $request->only('email', 'password');
@@ -51,7 +51,7 @@ class AuthController extends Controller
         ]);
         if($validate->fails()){
             return response()->json([
-              'error' => $validate->errors(),
+              'errors' => $validate->errors(),
             ], 422);
         }
         $reqData = $request->only('name','phone','email', 'password');

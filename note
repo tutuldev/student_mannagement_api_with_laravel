@@ -25,3 +25,11 @@ php artisan migrate
 
 php artisan make:controller Api/Auth/AuthController
 php artisan make:controller Api/Auth/ForgotPasswordController
+
+frontend e
+4.AdminLTE dowonload for admin panel
+https://adminlte.io/themes/v3/
+
+5.axios install
+https://www.npmjs.com/package/axios
+npm install axios
