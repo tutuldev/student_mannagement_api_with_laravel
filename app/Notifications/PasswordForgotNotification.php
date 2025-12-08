@@ -28,7 +28,7 @@ class PasswordForgotNotification extends Notification implements ShouldQueue
         return (new MailMessage)
             ->subject('Password Forget Notification')
             ->line('Click the button below to reset your password.')
-            ->action('Forgot Password', url('http://localhost:8080/reset-password?token=' . $this->token))
+            ->action('Forgot Password', url('http://localhost:8080/#/reset-password?token=' . $this->token))
             ->line('If you did not request this, please ignore this email.');
     }
 

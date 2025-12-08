@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Notification;
 
@@ -54,6 +55,31 @@ class ForgotPasswordController extends Controller
 
         return response()->json([
             'message' => 'Password reset link has been sent to your email address.',
+        ], 200);
+
+    }
+    public function reset(Request $request){
+        // dd($request->all());
+         $validate = Validator::make($request->all(), [
+            'password' => 'required|min:4|confirmed',
+            'token' => 'required|exists:password_resets',
+        ]);
+
+        if ($validate->fails()) {
+            return response()->json([
+                'errors' => $validate->errors(),
+            ], 422);
+        }
+
+        $token= DB::table('password_resets')->where('token', $request->token)->first();
+        $user= User::whereEmail($token->email)->first();
+        $user->password= Hash::make($request->password);
+        $user->save();
+
+        DB::table('password_resets')->where('token', $request->token)->delete();
+
+           return response()->json([
+            'message' => 'Password Reset Success.',
         ], 200);
 
     }

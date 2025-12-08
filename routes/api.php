@@ -14,6 +14,7 @@ Route::prefix('v1')->group(function () {
      Route::post('/login',[AuthController::class, 'login']);
      Route::post('/register',[AuthController::class, 'register']);
      Route::post('/forgot',[ForgotPasswordController::class, 'forgotPassword']);
+     Route::post('/reset',[ForgotPasswordController::class, 'reset']);
 
      Route::get('/login',function(){
          return response()->json([
